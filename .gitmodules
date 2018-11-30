@@ -1,0 +1,3 @@
+[submodule "mag_test_common"]
+	path = mag_test_common
+	url = git@github.com:ribafish/mag_test_common.git
