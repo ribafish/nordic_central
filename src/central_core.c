@@ -122,7 +122,7 @@ void central_core_update() {
 
 		state = CENTRAL_CORE_STATE_IDLE;
 		break;
-	case CENTRAL_CORE_WRITE_TEST:
+	case CENTRAL_CORE_WRITE_SELFTEST:
 		debug_line("Test write");
 		uint8_t write[] = {CTRL_CMD_TEST_NOTIF,1,2,3,4};
 
@@ -135,7 +135,7 @@ void central_core_update() {
 	    	write_done = false;
 	    }
 		break;
-	case CENTRAL_CORE_READ_TEST:
+	case CENTRAL_CORE_READ_SELFTEST:
 		debug_line("Test read");
 		err_code = read_test_char(TEST_CHAR_HANDLE_DATA_IDX);
 	    if (err_code != NRF_SUCCESS) {
@@ -406,8 +406,8 @@ void central_core_event_handler(central_core_event_t evt) {
 		queue_state(CENTRAL_CORE_WRITE_WAIT);
     	write_done = false;
 
-		queue_state(CENTRAL_CORE_WRITE_TEST);
-		queue_state(CENTRAL_CORE_READ_TEST);
+		queue_state(CENTRAL_CORE_WRITE_SELFTEST);
+		queue_state(CENTRAL_CORE_READ_SELFTEST);
 		break;
 	case CENTRAL_CORE_EVT_WRITE_DONE:
 //		debug_line("Write done");
